@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Генератор случайных строк</title>
+</head>
+<body>
+
+<label for="length">Длина строки:</label>
+<input type="number" id="length" min="1" value="10"><br><br>
+
+<label>Использовать символы:</label><br>
+<input type="checkbox" id="useDigits" checked>
+<label for="useDigits">Цифры</label><br>
+<input type="checkbox" id="useUppercase" checked>
+<label for="useUppercase">Прописные буквы</label><br>
+<input type="checkbox" id="useLowercase" checked>
+<label for="useLowercase">Строчные буквы</label><br><br>
+
+<button onclick="generateRandomString()">Generate</button><br><br>
+
+<textarea id="result" rows="4" cols="50" readonly></textarea>
+
+<script>
+function generateRandomString() {
+    var length = parseInt(document.getElementById('length').value);
+    var useDigits = document.getElementById('useDigits').checked;
+    var useUppercase = document.getElementById('useUppercase').checked;
+    var useLowercase = document.getElementById('useLowercase').checked;
+
+    var characters = '';
+    if (useDigits) characters += '0123456789';
+    if (useUppercase) characters += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    if (useLowercase) characters += 'abcdefghijklmnopqrstuvwxyz';
+
+    var result = '';
+    for (var i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+
+    document.getElementById('result').value = result;
+}
+</script>
+
+</body>
+</html>
